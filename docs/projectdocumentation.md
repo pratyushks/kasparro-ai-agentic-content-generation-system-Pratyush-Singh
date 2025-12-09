@@ -82,27 +82,18 @@ The system is decomposed into **eight agents**, each with a single, isolated res
 
 ### Agent List
 
+
 | Agent | Responsibility |
-
 |-------|----------------|
-
-|**ProductDataAgent**| Load & parse JSON product files |
-
-|**QuestionGeneratorAgent**| Generate ≥ 15 categorized user questions |
-
-|**FAQAgent**| Produce answered FAQ items with priorities |
-
-|**ContentBlockAgent**| Generate reusable content logic blocks |
-
-|**ProductPageAgent**| Build product detail page |
-
-|**FAQPageAgent**| Build categorized FAQ page |
-
-|**ComparisonPageAgent**| Build comparison page between GlowBoost and Product B |
-
-|**JsonExportAgent**| Export all pages to JSON |
-
-|**agent_execution.py**| Orchestrates entire multi-agent pipeline |
+| **ProductDataAgent** | Load & parse JSON product files |
+| **QuestionGeneratorAgent** | Generate ≥ 15 categorized user questions |
+| **FAQAgent** | Produce answered FAQ items with priorities |
+| **ContentBlockAgent** | Generate reusable content logic blocks |
+| **ProductPageAgent** | Build product detail page |
+| **FAQPageAgent** | Build categorized FAQ page |
+| **ComparisonPageAgent** | Build comparison page between GlowBoost and Product B |
+| **JsonExportAgent** | Export all pages to JSON |
+| **agent_execution.py** | Orchestrates entire multi-agent pipeline |
 
 ---
 
