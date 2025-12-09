@@ -1,0 +1,11 @@
+{
+  "id": "hydraboost-vitamin-c-serum",
+  "name": "HydraBoost Vitamin C Serum",
+  "vitamin_c_concentration": "15%",
+  "skin_types": ["Normal", "Dry"],
+  "key_ingredients": ["Vitamin C", "Niacinamide"],
+  "benefits": ["Brightening", "Evens skin tone"],
+  "how_to_use": "Apply 2-3 drops on clean skin in the morning.",
+  "side_effects": "May cause mild dryness for very sensitive skin.",
+  "price_inr": 899
+}

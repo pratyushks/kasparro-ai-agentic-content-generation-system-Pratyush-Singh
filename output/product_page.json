@@ -1,0 +1,82 @@
+{
+  "page_type": "product_detail",
+  "product": {
+    "id": "glowboost-vitamin-c-serum",
+    "name": "GlowBoost Vitamin C Serum",
+    "price_inr": 699
+  },
+  "hero_section": {
+    "title": "GlowBoost Vitamin C Serum",
+    "tagline": "10% Vitamin C serum for Oily, Combination skin.",
+    "key_highlights": [
+      "Suitable for Oily, Combination skin types.",
+      "Helps brighten skin and fade dark spots."
+    ]
+  },
+  "benefits_section": {
+    "type": "benefits_block",
+    "headline": "Benefits",
+    "bullets": [
+      "Helps brighten the look of your skin.",
+      "Helps fade the appearance of dark spots over time."
+    ]
+  },
+  "usage_section": {
+    "type": "usage_block",
+    "headline": "How to use",
+    "steps": [
+      "Start with clean, dry skin.",
+      "Apply 2-3 drops in the morning before sunscreen."
+    ],
+    "frequency_note": "Use once daily in the morning."
+  },
+  "ingredients_section": {
+    "headline": "Key ingredients",
+    "list": [
+      "Vitamin C",
+      "Hyaluronic Acid"
+    ]
+  },
+  "safety_section": {
+    "type": "safety_block",
+    "headline": "Safety & side effects",
+    "notes": [
+      "May cause mild tingling for sensitive skin."
+    ],
+    "sensitive_skin_warning": "Patch test first if your skin tends to be sensitive."
+  },
+  "price_section": {
+    "type": "price_block",
+    "headline": "Price",
+    "currency": "INR",
+    "amount": 699,
+    "note": "Listed price: ₹699."
+  },
+  "faq_preview_section": {
+    "headline": "Top questions",
+    "faqs": [
+      {
+        "id": "faq-q3",
+        "category": "usage",
+        "question": "How should I apply GlowBoost Vitamin C Serum?",
+        "answer": "Apply 2-3 drops in the morning before sunscreen.",
+        "priority": 0.96
+      },
+      {
+        "id": "faq-q4",
+        "category": "usage",
+        "question": "How often can I use GlowBoost Vitamin C Serum?",
+        "answer": "You can use it once daily, preferably in the morning as described.",
+        "priority": 0.95
+      },
+      {
+        "id": "faq-q5",
+        "category": "usage",
+        "question": "Should I use GlowBoost Vitamin C Serum in the morning or at night?",
+        "answer": "The usage instructions specify morning use before sunscreen.",
+        "priority": 0.95
+      }
+    ]
+  },
+  "generated_at": "2025-12-09T09:28:54Z"
+}

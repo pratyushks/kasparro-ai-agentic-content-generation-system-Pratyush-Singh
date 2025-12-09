@@ -1,0 +1,47 @@
+{
+  "page_type": "comparison",
+  "primary_product": {
+    "id": "glowboost-vitamin-c-serum",
+    "name": "GlowBoost Vitamin C Serum"
+  },
+  "secondary_product": {
+    "id": "hydraboost-vitamin-c-serum",
+    "name": "HydraBoost Vitamin C Serum"
+  },
+  "comparison_summary": {
+    "headline": "GlowBoost Vitamin C Serum vs HydraBoost Vitamin C Serum",
+    "summary": "Both products are Vitamin C serums. GlowBoost Vitamin C Serum is described as suitable for Oily, Combination skin, while HydraBoost Vitamin C Serum in this fictional example is described for Normal, Dry skin."
+  },
+  "comparison_points": [
+    {
+      "attribute": "Skin type",
+      "primary_value": "Oily, Combination",
+      "secondary_value": "Normal, Dry"
+    },
+    {
+      "attribute": "Vitamin C concentration",
+      "primary_value": "10%",
+      "secondary_value": "15%"
+    },
+    {
+      "attribute": "Key ingredients",
+      "primary_value": "Vitamin C, Hyaluronic Acid",
+      "secondary_value": "Vitamin C, Niacinamide"
+    },
+    {
+      "attribute": "Benefits",
+      "primary_value": "Brightening, Fades dark spots",
+      "secondary_value": "Brightening, Evens skin tone"
+    },
+    {
+      "attribute": "Price (INR)",
+      "primary_value": 699,
+      "secondary_value": 899
+    }
+  ],
+  "who_should_choose_which": {
+    "primary_recommendation": "Choose GlowBoost Vitamin C Serum if you have Oily, Combination skin and want a 10% Vitamin C serum that helps brighten skin and fade dark spots.",
+    "secondary_recommendation": "Choose HydraBoost Vitamin C Serum if you have Normal, Dry skin and prefer this fictional alternative."
+  },
+  "generated_at": "2025-12-09T09:28:54Z"
+}
