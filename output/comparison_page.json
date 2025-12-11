@@ -1,47 +1,110 @@
 {
-  "page_type": "comparison",
-  "primary_product": {
-    "id": "glowboost-vitamin-c-serum",
-    "name": "GlowBoost Vitamin C Serum"
-  },
-  "secondary_product": {
-    "id": "hydraboost-vitamin-c-serum",
-    "name": "HydraBoost Vitamin C Serum"
-  },
-  "comparison_summary": {
-    "headline": "GlowBoost Vitamin C Serum vs HydraBoost Vitamin C Serum",
-    "summary": "Both products are Vitamin C serums. GlowBoost Vitamin C Serum is described as suitable for Oily, Combination skin, while HydraBoost Vitamin C Serum in this fictional example is described for Normal, Dry skin."
-  },
-  "comparison_points": [
+  "title": "Product Comparison: GlowBoost vs HydraBoost Vitamin C Serums",
+  "products": [
     {
-      "attribute": "Skin type",
-      "primary_value": "Oily, Combination",
-      "secondary_value": "Normal, Dry"
+      "id": "glowboost-vitamin-c-serum",
+      "name": "GlowBoost Vitamin C Serum",
+      "vitamin_c_concentration": "10%",
+      "skin_types": [
+        "Oily",
+        "Combination"
+      ],
+      "key_ingredients": [
+        "Vitamin C",
+        "Hyaluronic Acid"
+      ],
+      "benefits": [
+        "Brightening",
+        "Fades dark spots"
+      ],
+      "how_to_use": "Apply 2-3 drops in the morning before sunscreen.",
+      "side_effects": "Mild tingling for sensitive skin.",
+      "price_inr": 699
     },
     {
-      "attribute": "Vitamin C concentration",
-      "primary_value": "10%",
-      "secondary_value": "15%"
-    },
-    {
-      "attribute": "Key ingredients",
-      "primary_value": "Vitamin C, Hyaluronic Acid",
-      "secondary_value": "Vitamin C, Niacinamide"
-    },
-    {
-      "attribute": "Benefits",
-      "primary_value": "Brightening, Fades dark spots",
-      "secondary_value": "Brightening, Evens skin tone"
-    },
-    {
-      "attribute": "Price (INR)",
-      "primary_value": 699,
-      "secondary_value": 899
+      "id": "hydraboost-vitamin-c-serum",
+      "name": "HydraBoost Vitamin C Serum",
+      "vitamin_c_concentration": "15%",
+      "skin_types": [
+        "Normal",
+        "Dry"
+      ],
+      "key_ingredients": [
+        "Vitamin C",
+        "Niacinamide"
+      ],
+      "benefits": [
+        "Brightening",
+        "Evens skin tone"
+      ],
+      "how_to_use": "Apply 2-3 drops on clean skin in the morning.",
+      "side_effects": "May cause mild dryness for very sensitive skin.",
+      "price_inr": 899
     }
   ],
-  "who_should_choose_which": {
-    "primary_recommendation": "Choose GlowBoost Vitamin C Serum if you have Oily, Combination skin and want a 10% Vitamin C serum that helps brighten skin and fade dark spots.",
-    "secondary_recommendation": "Choose HydraBoost Vitamin C Serum if you have Normal, Dry skin and prefer this fictional alternative."
-  },
-  "generated_at": "2025-12-09T09:28:54Z"
+  "comparison_features": [
+    {
+      "feature": "Product ID",
+      "GlowBoost Vitamin C Serum": "glowboost-vitamin-c-serum",
+      "HydraBoost Vitamin C Serum": "hydraboost-vitamin-c-serum"
+    },
+    {
+      "feature": "Product Name",
+      "GlowBoost Vitamin C Serum": "GlowBoost Vitamin C Serum",
+      "HydraBoost Vitamin C Serum": "HydraBoost Vitamin C Serum"
+    },
+    {
+      "feature": "Vitamin C Concentration",
+      "GlowBoost Vitamin C Serum": "10%",
+      "HydraBoost Vitamin C Serum": "15%"
+    },
+    {
+      "feature": "Suitable Skin Types",
+      "GlowBoost Vitamin C Serum": [
+        "Oily",
+        "Combination"
+      ],
+      "HydraBoost Vitamin C Serum": [
+        "Normal",
+        "Dry"
+      ]
+    },
+    {
+      "feature": "Key Ingredients",
+      "GlowBoost Vitamin C Serum": [
+        "Vitamin C",
+        "Hyaluronic Acid"
+      ],
+      "HydraBoost Vitamin C Serum": [
+        "Vitamin C",
+        "Niacinamide"
+      ]
+    },
+    {
+      "feature": "Main Benefits",
+      "GlowBoost Vitamin C Serum": [
+        "Brightening",
+        "Fades dark spots"
+      ],
+      "HydraBoost Vitamin C Serum": [
+        "Brightening",
+        "Evens skin tone"
+      ]
+    },
+    {
+      "feature": "How to Use",
+      "GlowBoost Vitamin C Serum": "Apply 2-3 drops in the morning before sunscreen.",
+      "HydraBoost Vitamin C Serum": "Apply 2-3 drops on clean skin in the morning."
+    },
+    {
+      "feature": "Potential Side Effects",
+      "GlowBoost Vitamin C Serum": "Mild tingling for sensitive skin.",
+      "HydraBoost Vitamin C Serum": "May cause mild dryness for very sensitive skin."
+    },
+    {
+      "feature": "Price (INR)",
+      "GlowBoost Vitamin C Serum": 699,
+      "HydraBoost Vitamin C Serum": 899
+    }
+  ]
 }

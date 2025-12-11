@@ -1,51 +1,62 @@
+import json
 from pathlib import Path
-from .agents.product_data_agent import ProductDataAgent
-from .agents.question_generator_agent import QuestionGeneratorAgent
-from .agents.faq_agent import FAQAgent
-from .agents.content_block_agent import ContentBlockAgent
-from .agents.product_page_agent import ProductPageAgent
-from .agents.faq_page_agent import FAQPageAgent
-from .agents.comparison_page_agent import ComparisonPageAgent
-from .agents.json_export_agent import JsonExportAgent
+from src.agents.question_agent import run_question_agent
+from src.agents.faq_agent import run_faq_agent
+from src.agents.page_agent import run_page_agent
 
-def run_pipeline() -> None:
-    # 1. Load products
-    data_agent = ProductDataAgent(data_dir=str(Path("data")))
-    products = data_agent.load_products()
+OUTPUT_DIR = Path("output")
 
-    glowboost = products["glowboost-vitamin-c-serum"]
-    product_b = next(p for pid, p in products.items() if pid != glowboost.id)
+def ensure_output_dir() -> None:
+    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
-    # 2. Generate questions
-    q_agent = QuestionGeneratorAgent()
-    questions = q_agent.generate_questions(glowboost)
 
-    # 3. Generate FAQs
-    faq_agent = FAQAgent()
-    faq_items = faq_agent.generate_faq_items(glowboost, questions)
+def main() -> None:
+    ensure_output_dir()
 
-    # 4. Build content blocks
-    cb_agent = ContentBlockAgent()
-    blocks = cb_agent.build_blocks(glowboost)
+    # 1. Generate questions
+    print("Running QuestionGeneratorAgent...")
+    questions_json = run_question_agent()
+    (OUTPUT_DIR / "questions.json").write_text(
+        json.dumps(questions_json, ensure_ascii=False, indent=2),
+        encoding="utf-8",
+    )
 
-    # 5. Build product page
-    product_page_agent = ProductPageAgent()
-    product_page = product_page_agent.build_product_page(glowboost, blocks, faq_items)
+    # 2. Generate FAQs
+    print("Running FAQAgent...")
+    faq_items_json = run_faq_agent(questions_json)
+    (OUTPUT_DIR / "faq_items.json").write_text(
+        json.dumps(faq_items_json, ensure_ascii=False, indent=2),
+        encoding="utf-8",
+    )
 
-    # 6. Build FAQ page
-    faq_page_agent = FAQPageAgent()
-    faq_page = faq_page_agent.build_faq_page(glowboost, faq_items)
+    # 3. Build pages (FAQ + product + comparison)
+    print("Running PageAssemblyAgent...")
+    pages_json = run_page_agent(faq_items_json)
 
-    # 7. Build comparison page
-    comparison_agent = ComparisonPageAgent()
-    comparison_page = comparison_agent.build_comparison_page(glowboost, product_b)
+    faq_page = pages_json["faq_page"]
+    product_page = pages_json["product_page"]
+    comparison_page = pages_json["comparison_page"]
 
-    # 8. Export all pages as JSON
-    exporter = JsonExportAgent(output_dir="output")
-    exporter.export_pages(faq_page, product_page, comparison_page)
+    (OUTPUT_DIR / "faq.json").write_text(
+        json.dumps(faq_page, ensure_ascii=False, indent=2),
+        encoding="utf-8",
+    )
+    (OUTPUT_DIR / "product_page.json").write_text(
+        json.dumps(product_page, ensure_ascii=False, indent=2),
+        encoding="utf-8",
+    )
+    (OUTPUT_DIR / "comparison_page.json").write_text(
+        json.dumps(comparison_page, ensure_ascii=False, indent=2),
+        encoding="utf-8",
+    )
 
-    print("Generated pages in ./output: faq.json, product_page.json, comparison_page.json")
+    print("Completed. Output Generated:")
+    print("   - output/questions.json")
+    print("   - output/faq_items.json")
+    print("   - output/faq.json")
+    print("   - output/product_page.json")
+    print("   - output/comparison_page.json")
 
 
 if __name__ == "__main__":
-    run_pipeline()
+    main()

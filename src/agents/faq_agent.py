@@ -1,101 +1,83 @@
-from typing import List
-from ..models import Product, Question, FAQItem
+import json
+from typing import Any, Dict
+from langchain_google_genai import ChatGoogleGenerativeAI
+from langchain_core.prompts import ChatPromptTemplate
+from src.tools import get_product_data
+from src.config import GOOGLE_API_KEY
+from src.json_utils import extract_json_object
 
-class FAQAgent:
-    """
-    Converts questions + product data into answered FAQ items.
-    Ensures at least 5 FAQ items with priorities.
-    """
+def _get_gemini_llm(temperature: float = 0.3) -> ChatGoogleGenerativeAI:
+    return ChatGoogleGenerativeAI(
+        model="gemini-2.5-flash",
+        temperature=temperature,
+        google_api_key=GOOGLE_API_KEY,
+    )
 
-    def generate_faq_items(self, product: Product, questions: List[Question]) -> List[FAQItem]:
-        faq_items: List[FAQItem] = []
 
-        for q in questions:
-            answer = self._answer_for_question(product, q)
-            priority = self._priority_for_question(q)
-            faq_items.append(
-                FAQItem(
-                    id=f"faq-{q.id}",
-                    category=q.category,
-                    question=q.text,
-                    answer=answer,
-                    priority=priority,
-                )
-            )
+def _build_faq_prompt() -> ChatPromptTemplate:
+    return ChatPromptTemplate.from_messages(
+        [
+            (
+                "system",
+                (
+                    "You are the FAQAgent.\n"
+                    "You receive a list of user questions for the primary product.\n"
+                    "You must answer each question using ONLY information from the product JSON, "
+                    "plus generic safety/usage advice that does not add new product-specific claims.\n\n"
+                    "For example, you may say 'patch test if you have sensitive skin', "
+                    "but you must not invent efficacy claims like 'works in 2 weeks'.\n\n"
+                    "The product JSON will be provided to you.\n\n"
+                    "Input questions JSON shape:\n"
+                    "{{\n"
+                    "  \"questions\": [ {{\"id\": \"q1\", \"category\": \"...\", \"text\": \"...\"}}, ... ]\n"
+                    "}}\n\n"
+                    "Your final answer MUST be STRICT JSON of shape:\n"
+                    "{{\n"
+                    "  \"faq_items\": [\n"
+                    "    {{\n"
+                    "      \"id\": \"faq-q1\",\n"
+                    "      \"category\": \"usage\",\n"
+                    "      \"question\": \"...\",\n"
+                    "      \"answer\": \"...\",\n"
+                    "      \"priority\": 0.95\n"
+                    "    }},\n"
+                    "    ... one for each input question ...\n"
+                    "  ]\n"
+                    "}}\n"
+                    "Priorities are numbers between 0 and 1 (higher = more important)."
+                ),
+            ),
+            (
+                "human",
+                "Here is the product JSON:\n\n{product_json}\n\n"
+                "Here is the questions JSON:\n\n{questions_json}\n\n"
+                "Generate FAQ items now."
+            ),
+        ]
+    )
 
-        faq_items.sort(key=lambda f: f.priority, reverse=True)
-        return faq_items
 
-    def _answer_for_question(self, product: Product, q: Question) -> str:
-        name = product.name
-        skin_types = ", ".join(product.skin_types)
-        ingredients = ", ".join(product.key_ingredients)
-        benefits = ", ".join(product.benefits)
+def run_faq_agent(questions_json: Dict[str, Any]) -> Dict[str, Any]:
+    product_json = get_product_data.invoke("primary")
 
-        # Simple rule-based mapping
-        if q.id == "q1":
-            return f"{name} is a {product.vitamin_c_concentration} Vitamin C serum described as helping with {benefits.lower()}."
-        if q.id == "q2":
-            return f"It is described as suitable for {skin_types} skin types."
-        if q.id == "q3":
-            return product.how_to_use
-        if q.id == "q4":
-            return "You can use it once daily, preferably in the morning as described."
-        if q.id == "q5":
-            return "The usage instructions specify morning use before sunscreen."
-        if q.id == "q6":
-            return (
-                "The dataset only describes how to use it before sunscreen. "
-                "If you are layering multiple products, introduce them slowly and "
-                "patch test if needed."
-            )
-        if q.id == "q7":
-            return (
-                f"The product notes: '{product.side_effects}'. "
-                "If you have very sensitive skin, patch test first and start slowly."
-            )
-        if q.id == "q8":
-            return product.side_effects
-        if q.id == "q9":
-            return (
-                "If you experience irritation, reduce how often you use it or stop use "
-                "and consult a professional if it persists."
-            )
-        if q.id == "q10":
-            return "Yes, one of the listed benefits is 'Brightening'."
-        if q.id == "q11":
-            return "Yes, it is described as helping to fade dark spots."
-        if q.id == "q12":
-            return f"The listed price is ₹{product.price_inr}."
-        if q.id == "q13":
-            return (
-                f"The price is ₹{product.price_inr}. Whether it is good value depends on your budget "
-                "and how important brightening and fading dark spots are for you."
-            )
-        if q.id == "q14":
-            return (
-                f"{name} is specifically described as a {product.vitamin_c_concentration} "
-                f"Vitamin C serum for {skin_types} skin types with key ingredients {ingredients}."
-            )
-        if q.id == "q15":
-            return (
-                "If you already use a Vitamin C product, avoid layering multiple strong Vitamin C "
-                "products without guidance, as it may increase the chance of irritation."
-            )
+    llm = _get_gemini_llm(temperature=0.3)
+    prompt = _build_faq_prompt()
 
-        return "The data only provides limited information about this question."
+    messages = prompt.invoke(
+        {
+            "product_json": product_json,
+            "questions_json": json.dumps(questions_json, ensure_ascii=False),
+        }
+    )
 
-    def _priority_for_question(self, q: Question) -> float:
-        # Simple heuristic: usage & safety > benefits > purchase > general > comparison
-        base = {
-            "usage": 0.95,
-            "safety": 0.9,
-            "benefits": 0.8,
-            "purchase": 0.7,
-            "general": 0.6,
-            "comparison": 0.5,
-        }[q.category]
+    response = llm.invoke(messages.to_messages())
 
-        # Make earlier questions within each category slightly higher
-        offset = 0.01 if q.id in ("q3", "q7", "q10") else 0.0
-        return base + offset
+    if isinstance(response.content, str):
+        output_str = response.content
+    else:
+        output_str = "".join(
+            part.get("text", "") if isinstance(part, dict) else str(part)
+            for part in (response.content or [])
+        )
+
+    return extract_json_object(output_str)

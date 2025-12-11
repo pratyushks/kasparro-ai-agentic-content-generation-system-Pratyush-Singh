@@ -1,0 +1,89 @@
+{
+  "questions": [
+    {
+      "id": "q1",
+      "category": "general",
+      "text": "What is the name of this product?"
+    },
+    {
+      "id": "q2",
+      "category": "general",
+      "text": "What is the vitamin C concentration in the GlowBoost Vitamin C Serum?"
+    },
+    {
+      "id": "q3",
+      "category": "general",
+      "text": "What are the key ingredients in the GlowBoost Vitamin C Serum?"
+    },
+    {
+      "id": "q4",
+      "category": "general",
+      "text": "Which skin types is the GlowBoost Vitamin C Serum suitable for?"
+    },
+    {
+      "id": "q5",
+      "category": "benefits",
+      "text": "What are the main benefits of using the GlowBoost Vitamin C Serum?"
+    },
+    {
+      "id": "q6",
+      "category": "benefits",
+      "text": "Does the GlowBoost Vitamin C Serum help with brightening the skin?"
+    },
+    {
+      "id": "q7",
+      "category": "benefits",
+      "text": "Can this serum fade dark spots?"
+    },
+    {
+      "id": "q8",
+      "category": "usage",
+      "text": "How should I use the GlowBoost Vitamin C Serum?"
+    },
+    {
+      "id": "q9",
+      "category": "usage",
+      "text": "When is the best time to apply the GlowBoost Vitamin C Serum?"
+    },
+    {
+      "id": "q10",
+      "category": "usage",
+      "text": "How many drops of the serum should be applied?"
+    },
+    {
+      "id": "q11",
+      "category": "usage",
+      "text": "Should I apply sunscreen after using the GlowBoost Vitamin C Serum?"
+    },
+    {
+      "id": "q12",
+      "category": "safety",
+      "text": "Are there any known side effects of the GlowBoost Vitamin C Serum?"
+    },
+    {
+      "id": "q13",
+      "category": "safety",
+      "text": "What kind of reaction might sensitive skin experience when using this serum?"
+    },
+    {
+      "id": "q14",
+      "category": "purchase",
+      "text": "What is the price of the GlowBoost Vitamin C Serum?"
+    },
+    {
+      "id": "q15",
+      "category": "general",
+      "text": "Does the GlowBoost Vitamin C Serum contain Hyaluronic Acid?"
+    },
+    {
+      "id": "q16",
+      "category": "general",
+      "text": "Is the GlowBoost Vitamin C Serum good for oily skin?"
+    },
+    {
+      "id": "q17",
+      "category": "general",
+      "text": "Is the GlowBoost Vitamin C Serum suitable for combination skin?"
+    }
+  ]
+}
